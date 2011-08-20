@@ -1,0 +1,3694 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE RENDER_MONKEY [
+   <!ELEMENT RENDER_MONKEY
+   (
+      RmEffectWorkspace |
+      RmRegistryBranch |
+      RmClipboardNode
+   )?>
+
+   <!ELEMENT RmEffectWorkspace 
+   (
+      RmRegistryBranch?,
+      RmPlugInData?,
+      RmStringVariable*,
+      (
+         ( RmDirectXEffect, RmOpenGLEffect? ) |
+         ( RmOpenGLEffect, RmDirectXEffect? )
+      )?,
+      (
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmRenderableTexture |
+         RmStreamMap |
+         RmModelData |
+         RmEffectGroup
+      )*
+   )>
+
+   <!ELEMENT RmEffectGroup
+   ( 
+      RmPlugInData?,
+      (
+         RmStringVariable |
+         RmDirectXEffect |
+         RmOpenGLEffect |
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmRenderableTexture |
+         RmStreamMap |
+         RmModelData
+      )*
+   )>
+
+   <!ELEMENT RmDirectXEffect
+   ( 
+      RmPlugInData?,
+      (
+         RmStringVariable |
+         RmCamera |
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmRenderableTexture |
+         RmStreamMap |
+         RmModelData |
+         RmPass
+      )*
+   )>
+
+   <!ELEMENT RmOpenGLEffect
+   (
+      RmPlugInData?,
+      (
+         RmStringVariable |
+         RmCamera |
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmRenderableTexture |
+         RmStreamMap |
+         RmModelData |
+         RmGLPass
+      )*
+   )>
+
+   <!ELEMENT RmPass
+   ( 
+      RmPlugInData?,
+      RmStringVariable*,
+      RmCameraReference?,
+      RmModelReference?,
+      RmRenderStateBlock?,
+      (
+         (
+         ( RmHLSLShader | RmShader ),
+         ( RmShader | RmHLSLShader )?
+         )
+      )?,
+      RmRenderTarget*,
+      RmStreamMapReference?,
+      (
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmTextureObject |
+         RmLightObject |
+         RmMaterialObject
+         )*
+      )>
+                                                                     
+   <!ELEMENT RmGLPass
+   ( 
+      RmPlugInData?,
+      RmStringVariable*,
+      RmCameraReference?,
+      RmModelReference?,
+      RmRenderStateBlock?,
+      (
+         ( RmGLShader, RmGLShader? ) 
+      )?,
+      RmRenderTarget?,
+      RmStreamMapReference?,
+      (
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmColorVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmTextureObject |
+         RmLightObject |
+         RmMaterialObject |
+         RmShaderConstant |
+         RmSampler
+         )*
+      )>
+      
+   <!ELEMENT RmShader
+   ( 
+      RmShaderCode,
+      RmPlugInData?,
+      (
+      RmStringVariable |
+      RmShaderConstant
+      )*
+   )>
+
+   <!ELEMENT RmHLSLShader
+   ( 
+      RmPlugInData?,
+      RmShaderCode,
+      (
+      RmStringVariable |
+      RmShaderConstant |
+      RmSampler
+      )*
+   )>
+
+   <!ELEMENT RmGLShader
+   ( 
+      RmPlugInData?,
+      RmShaderCode,
+      (
+      RmStringVariable
+      )*
+   )>
+
+   <!ELEMENT RmTextureObject
+   (
+      RmPlugInData?,
+      RmStringVariable*,
+      RmTextureReference?,
+      RmState*
+   )>
+
+   <!ELEMENT RmLightObject
+   (
+      RmPlugInData?,
+      RmStringVariable*,
+      RmLightReference?
+   )>
+   
+   <!ELEMENT RmMaterialObject
+   (
+      RmPlugInData?,
+      RmStringVariable*,
+      RmMaterialReference?
+   )>
+   
+   <!ELEMENT RmRenderStateBlock
+   (
+      RmPlugInData?,
+      (
+         RmStringVariable |
+         RmState 
+      )*
+   )>
+
+   <!ELEMENT RmStreamMap
+   (
+      RmPlugInData?,
+      (
+         RmStringVariable |
+         RmStream 
+      )*
+   )>
+
+   <!ELEMENT RmStream               ( RmPlugInData?, RmStreamChannel* )>
+
+   <!ELEMENT RmModelData            ( RmPlugInData?, RmStringVariable* )>  
+   <!ELEMENT RmTextureReference     ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmLightReference       ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmMaterialReference    ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmCameraReference      ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmModelReference       ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmStreamMapReference   ( RmPlugInData?, RmStringVariable* )>   
+   <!ELEMENT RmRenderableTexture    ( RmPlugInData?, RmStringVariable* )>   
+   <!ELEMENT RmRenderTarget         ( RmPlugInData?, RmStringVariable* )>   
+   <!ELEMENT RmBooleanVariable      ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmFloatVariable        ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmVectorVariable       ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmMatrixVariable       ( RmPlugInData?, RmStringVariable* )>   
+   <!ELEMENT RmColorVariable        ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmIntegerVariable      ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT Rm2DTextureVariable    ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmCubemapVariable      ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT Rm3DTextureVariable    ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmLightVariable        ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmMaterialVariable     ( RmPlugInData?, RmStringVariable* )>
+   <!ELEMENT RmCamera               ( RmPlugInData?, RmStringVariable* )>
+
+   <!ELEMENT RmStringVariable       ( RmTextDataBlock, RmPlugInData? )>
+   
+   <!ELEMENT RmDynamicVariable
+   (
+      RmPlugInData?,
+      RmStringVariable*,
+      RmDynamicVariableValueContainer
+   )>
+   
+   <!ELEMENT RmDynamicVariableValueContainer
+   (
+      RmPlugInData?,
+      RmDynamicVariableValue*
+   )>
+   
+   <!ELEMENT RmTextDataBlock        ( #PCDATA ) >
+   
+   <!ELEMENT RmRegistryBranch
+   ( 
+      RmTextDataBlock?,
+      (
+         RmRegistryBranch |
+         RmStringVariable |
+         RmIntegerVariable |
+         RmBooleanVariable |
+         RmFloatVariable
+      )*      
+   )>
+
+   <!ELEMENT RmPlugInData
+   ( 
+      RmTextDataBlock?,
+      (
+         RmStringVariable |
+         RmIntegerVariable |
+         RmBooleanVariable |
+         RmFloatVariable
+      )*      
+   )>
+   
+   <!ELEMENT RmClipboardNode
+   ( 
+      RmTextDataBlock?,
+      (
+         RmEffectWorkspace | 
+         RmEffectGroup |   
+         RmDirectXEffect |                
+         RmOpenGLEffect |                
+         RmPass |                  
+         RmGLPass |                  
+         RmShader |        
+         RmHLSLShader |        
+         RmGLShader |        
+         RmShaderConstant |
+         RmSampler |               
+         RmTextureObject |
+         RmLightObject |
+         RmMaterialObject |
+         RmRenderStateBlock |
+         RmState |                 
+         RmStreamMap |           
+         RmStream |              
+         RmStreamChannel |
+         RmModelData |
+         RmTextureReference |
+         RmLightReference |
+         RmMaterialReference |
+         RmModelReference |
+         RmStreamMapReference |
+         RmRenderableTexture |
+         RmRenderTarget |
+         RmBooleanVariable |
+         RmFloatVariable |
+         RmVectorVariable |
+         RmMatrixVariable |
+         RmDynamicVariable |
+         RmDynamicVariableValue |
+         RmColorVariable |
+         RmIntegerVariable |
+         RmStringVariable |
+         Rm2DTextureVariable |
+         RmCubemapVariable |
+         Rm3DTextureVariable |
+         RmLightVariable |
+         RmMaterialVariable |
+         RmRegistryBranch |
+         RmPlugInData |
+         RmCamera |                
+         RmCameraReference
+      )*      
+   )>
+   
+   <!ELEMENT RmStreamChannel        ( RmPlugInData? ) >
+   <!ELEMENT RmShaderConstant       ( RmPlugInData? ) >
+   <!ELEMENT RmSampler              ( RmPlugInData? ) >
+   <!ELEMENT RmState                ( RmPlugInData? ) >
+   <!ELEMENT RmDynamicVariableValue ( RmPlugInData? ) >
+   
+   <!ELEMENT RmShaderCode           ( #PCDATA ) >
+
+   <!ATTLIST RmEffectWorkspace 
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ACTIVE_EFFECT                 CDATA #REQUIRED
+      VALIDATION_STRING             CDATA #REQUIRED
+      XML_VERSION                   CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmEffectGroup           
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmDirectXEffect                
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ACTIVE_CAMERA                 CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmOpenGLEffect                
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ACTIVE_CAMERA                 CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmPass                  
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PASS_INDEX                    CDATA #REQUIRED
+      ENABLED                       ( TRUE | FALSE ) #REQUIRED
+   >                                 
+
+   <!ATTLIST RmGLPass                  
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PASS_INDEX                    CDATA #REQUIRED
+      ENABLED                       ( TRUE | FALSE ) #REQUIRED
+   >                                 
+   
+   <!ATTLIST RmShader        
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PIXEL_SHADER                  CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmHLSLShader        
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PIXEL_SHADER                  ( TRUE | FALSE ) #REQUIRED
+      TARGET                        CDATA #REQUIRED
+      ENTRY_POINT                   CDATA #REQUIRED
+   >  
+
+   <!ATTLIST RmGLShader        
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PIXEL_SHADER                  ( TRUE | FALSE ) #REQUIRED
+   >  
+
+   <!ATTLIST RmShaderConstant
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      REGISTER                      CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmSampler               
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      REGISTER                      CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmTextureObject
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      STATE_INDEX                   CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmLightObject
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      INDEX                         CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmMaterialObject
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      INDEX                         CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmRenderStateBlock
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmState                 
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      STATE                         CDATA #REQUIRED
+      VALUE                         CDATA #REQUIRED
+      USAGE                         CDATA #REQUIRED
+   >                               
+
+   <!ATTLIST RmStreamMap           
+     NAME                           CDATA #REQUIRED
+     API                            CDATA #REQUIRED
+   >                               
+
+   <!ATTLIST RmStream              
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      STRIDE                        CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmStreamChannel
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      DATA_SIZE                     CDATA #REQUIRED
+      DATA_TYPE                     CDATA #REQUIRED
+      REGISTER                      CDATA #REQUIRED
+      USAGE                         CDATA #REQUIRED
+      USAGE_INDEX                   CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmModelData
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      FILE_NAME                     CDATA #REQUIRED
+      ORIENTATION                   CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmTextureReference
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmLightReference
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmMaterialReference
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmModelReference
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmStreamMapReference
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmRenderableTexture
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      FILE_NAME                     CDATA #REQUIRED
+      ORIGIN                        CDATA #REQUIRED
+      WIDTH                         CDATA #REQUIRED
+      HEIGHT                        CDATA #REQUIRED
+      FORMAT                        CDATA #REQUIRED
+      USE_VIEWPORT_DIMENSIONS       ( TRUE | FALSE ) #REQUIRED
+      GENERATE_MIPMAPS              ( TRUE | FALSE ) #REQUIRED
+      WIDTH_RATIO                   CDATA #REQUIRED
+      HEIGHT_RATIO                  CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmRenderTarget
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      INDEX                         CDATA #REQUIRED
+      RENDER_TO_SCREEN              ( TRUE | FALSE ) #REQUIRED
+      COLOR_CLEAR                   ( TRUE | FALSE ) #REQUIRED
+      DEPTH_CLEAR                   ( TRUE | FALSE ) #REQUIRED
+      CLEAR_COLOR_VALUE             CDATA #REQUIRED
+      DEPTH_CLEAR_VALUE             CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmBooleanVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE                         CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmFloatVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE                         CDATA #REQUIRED
+      MIN                           CDATA #REQUIRED
+      MAX                           CDATA #REQUIRED
+      CLAMP                         ( TRUE | FALSE ) #REQUIRED
+   >
+
+   <!ATTLIST RmVectorVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE_0                       CDATA #REQUIRED
+      VALUE_1                       CDATA #REQUIRED
+      VALUE_2                       CDATA #REQUIRED
+      VALUE_3                       CDATA #REQUIRED
+      MIN                           CDATA #REQUIRED
+      MAX                           CDATA #REQUIRED
+      CLAMP                         ( TRUE | FALSE ) #REQUIRED
+      NORMALIZE                     ( TRUE | FALSE ) #REQUIRED
+   >
+
+   <!ATTLIST RmMatrixVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE_0                       CDATA #REQUIRED
+      VALUE_1                       CDATA #REQUIRED
+      VALUE_2                       CDATA #REQUIRED
+      VALUE_3                       CDATA #REQUIRED
+      VALUE_4                       CDATA #REQUIRED
+      VALUE_5                       CDATA #REQUIRED
+      VALUE_6                       CDATA #REQUIRED
+      VALUE_7                       CDATA #REQUIRED
+      VALUE_8                       CDATA #REQUIRED
+      VALUE_9                       CDATA #REQUIRED
+      VALUE_10                      CDATA #REQUIRED
+      VALUE_11                      CDATA #REQUIRED
+      VALUE_12                      CDATA #REQUIRED
+      VALUE_13                      CDATA #REQUIRED
+      VALUE_14                      CDATA #REQUIRED
+      VALUE_15                      CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmDynamicVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VARIABLE_TYPE                 ( FLOAT | INTEGER | BOOLEAN ) #REQUIRED
+      ROWS                          CDATA #REQUIRED
+      COLUMNS                       CDATA #REQUIRED
+      FIXED_SIZE                    ( TRUE | FALSE ) #REQUIRED
+      MIN                           CDATA #REQUIRED
+      MAX                           CDATA #REQUIRED
+      CLAMP                         ( TRUE | FALSE ) #REQUIRED
+      NORMALIZE                     ( TRUE | FALSE ) #REQUIRED
+   >
+   
+   <!ATTLIST RmDynamicVariableValue
+      ROW_INDEX                     CDATA #REQUIRED
+      COLUMN_INDEX                  CDATA #REQUIRED
+      VALUE                         CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmColorVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE_0                       CDATA #REQUIRED
+      VALUE_1                       CDATA #REQUIRED
+      VALUE_2                       CDATA #REQUIRED
+      VALUE_3                       CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmIntegerVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      VALUE                         CDATA #REQUIRED
+      MIN                           CDATA #REQUIRED
+      MAX                           CDATA #REQUIRED
+      CLAMP                         ( TRUE | FALSE ) #REQUIRED
+   >
+   
+   <!ATTLIST RmStringVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+   >
+
+   <!ATTLIST Rm2DTextureVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      FILE_NAME                     CDATA #REQUIRED
+      ORIGIN                        CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmCubemapVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      FILE_NAME                     CDATA #REQUIRED
+      ORIGIN                        CDATA #REQUIRED
+   >
+
+   <!ATTLIST Rm3DTextureVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      FILE_NAME                     CDATA #REQUIRED
+      ORIGIN                        CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmLightVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      LIGHT_ENABLED                 ( TRUE | FALSE ) #REQUIRED
+      LIGHT_TYPE                    ( POSITIONAL | DIRECTIONAL | SPOTLIGHT ) #REQUIRED
+      AMBIENT_0                     CDATA #REQUIRED
+      AMBIENT_1                     CDATA #REQUIRED
+      AMBIENT_2                     CDATA #REQUIRED
+      AMBIENT_3                     CDATA #REQUIRED
+      DIFFUSE_0                     CDATA #REQUIRED
+      DIFFUSE_1                     CDATA #REQUIRED
+      DIFFUSE_2                     CDATA #REQUIRED
+      DIFFUSE_3                     CDATA #REQUIRED
+      SPECULAR_0                    CDATA #REQUIRED
+      SPECULAR_1                    CDATA #REQUIRED
+      SPECULAR_2                    CDATA #REQUIRED
+      SPECULAR_3                    CDATA #REQUIRED
+      POSITION_0                    CDATA #REQUIRED
+      POSITION_1                    CDATA #REQUIRED
+      POSITION_2                    CDATA #REQUIRED
+      DIRECTION_0                   CDATA #REQUIRED
+      DIRECTION_1                   CDATA #REQUIRED
+      DIRECTION_2                   CDATA #REQUIRED
+      ATTENUATION_0                 CDATA #REQUIRED
+      ATTENUATION_1                 CDATA #REQUIRED
+      ATTENUATION_2                 CDATA #REQUIRED
+      SPOTLIGHT_THETA               CDATA #REQUIRED
+      SPOTLIGHT_PHI                 CDATA #REQUIRED
+      RANGE                         CDATA #REQUIRED
+      FALLOFF                       CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmMaterialVariable
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      ARTIST_EDITABLE               ( TRUE | FALSE ) #REQUIRED
+      VARIABLE_SEMANTIC             CDATA #REQUIRED
+      AMBIENT_0                     CDATA #REQUIRED
+      AMBIENT_1                     CDATA #REQUIRED
+      AMBIENT_2                     CDATA #REQUIRED
+      AMBIENT_3                     CDATA #REQUIRED
+      DIFFUSE_0                     CDATA #REQUIRED
+      DIFFUSE_1                     CDATA #REQUIRED
+      DIFFUSE_2                     CDATA #REQUIRED
+      DIFFUSE_3                     CDATA #REQUIRED
+      SPECULAR_0                    CDATA #REQUIRED
+      SPECULAR_1                    CDATA #REQUIRED
+      SPECULAR_2                    CDATA #REQUIRED
+      SPECULAR_3                    CDATA #REQUIRED
+      EMISSIVE_0                    CDATA #REQUIRED
+      EMISSIVE_1                    CDATA #REQUIRED
+      EMISSIVE_2                    CDATA #REQUIRED
+      EMISSIVE_3                    CDATA #REQUIRED
+      SPECULAR_POWER                CDATA #REQUIRED
+   >
+      
+   <!ATTLIST RmRegistryBranch
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      XML_VERSION                   CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmPlugInData
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      PLUGIN_GUID                   CDATA #REQUIRED
+   >
+
+   <!ATTLIST RmClipboardNode
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      XML_VERSION                   CDATA #REQUIRED
+   >
+   
+   <!ATTLIST RmCamera                
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      CAMERA_POSITION_X             CDATA #REQUIRED
+      CAMERA_POSITION_Y             CDATA #REQUIRED
+      CAMERA_POSITION_Z             CDATA #REQUIRED
+      LOOK_AT_VECTOR_X              CDATA #REQUIRED
+      LOOK_AT_VECTOR_Y              CDATA #REQUIRED
+      LOOK_AT_VECTOR_Z              CDATA #REQUIRED
+      UP_VECTOR_X                   CDATA #REQUIRED
+      UP_VECTOR_Y                   CDATA #REQUIRED
+      UP_VECTOR_Z                   CDATA #REQUIRED
+      FOV                           CDATA #REQUIRED
+      NEAR_CLIP_PLANE               CDATA #REQUIRED
+      FAR_CLIP_PLANE                CDATA #REQUIRED
+   >                                 
+
+   <!ATTLIST RmCameraReference                
+      NAME                          CDATA #REQUIRED
+      API                           CDATA #REQUIRED
+      USE_ACTIVE_CAMERA             ( TRUE | FALSE ) #REQUIRED
+   >                               
+   
+   <!ATTLIST RmShaderCode                
+      TYPE                          ( TEXT ) #REQUIRED
+   >                               
+   
+   <!ATTLIST RmTextDataBlock                
+      TYPE                          ( TEXT ) #REQUIRED
+   >                               
+   
+]>
+<RENDER_MONKEY>
+ <RmEffectWorkspace NAME="Effect Workspace" API="" ACTIVE_EFFECT="Effect Workspace.Shadow Effects.SoftShadows" VALIDATION_STRING="" XML_VERSION="RenderMonkey 1.5">
+  <RmRegistryBranch NAME="RM_REGISTRY" API="" XML_VERSION="RenderMonkey 1.5">
+   <RmRegistryBranch NAME="RM_LOCAL" API="" XML_VERSION="RenderMonkey 1.5">
+    <RmRegistryBranch NAME="WORKSPACE" API="" XML_VERSION="RenderMonkey 1.5">
+     <RmStringVariable NAME="LAST_SAVE" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+11/10/2008 12:47:53]]></RmTextDataBlock></RmStringVariable>
+     <RmStringVariable NAME="VERSION" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+RenderMonkey Version 1.5 (build 424)]]></RmTextDataBlock></RmStringVariable>
+     <RmStringVariable NAME="XML_VERSION" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+RenderMonkey 1.5]]></RmTextDataBlock></RmStringVariable>
+     <RmStringVariable NAME="BASE_WORKSPACE_PATH" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+C:\Program Files\ATI Research Inc\RenderMonkey 1.5\Examples\Dx9\MY_PROJ\]]></RmTextDataBlock></RmStringVariable>
+    </RmRegistryBranch>
+    <RmRegistryBranch NAME="RM_PLUGIN" API="" XML_VERSION="RenderMonkey 1.5"><RmTextDataBlock TYPE="TEXT"><![CDATA[
+<DockingPaneLayouts><Application_Layout><Pane-1><Type>0</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Title>Artist Editor</Title><ID>1001</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>21</DockingHolder><FloatingHolder>0</FloatingHolder><LastHolder>21</LastHolder></Pane-1><Pane-2><Type>5</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><Direction>3</Direction><Pane-1>3</Pane-1><Panes>1</Panes></Pane-2><Pane-3><Type>1</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Selected>4</Selected><Panes>1</Panes><Pane-1>4</Pane-1></Pane-3><Pane-4><Type>0</Type><DockingCX>250</DockingCX><DockingCY>53</DockingCY><Title>Output</Title><ID>1002</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>22</DockingHolder><FloatingHolder>0</FloatingHolder><LastHolder>22</LastHolder></Pane-4><Pane-5><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>planeSize</Title><ID>1100</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>15</DockingHolder><FloatingHolder>25</FloatingHolder><LastHolder>25</LastHolder></Pane-5><Pane-6><Type>2</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><Horiz>1</Horiz><Pane-1>7</Pane-1><Pane-2>8</Pane-2><Pane-3>9</Pane-3><Pane-4>10</Pane-4><Pane-5>11</Pane-5><Pane-6>12</Pane-6><Pane-7>13</Pane-7><Pane-8>14</Pane-8><Pane-9>15</Pane-9><Pane-10>16</Pane-10><Panes>10</Panes></Pane-6><Pane-7><Type>1</Type><DockingCX>331</DockingCX><DockingCY>174</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-7><Pane-8><Type>1</Type><DockingCX>374</DockingCX><DockingCY>188</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-8><Pane-9><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-9><Pane-10><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-10><Pane-11><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-11><Pane-12><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-12><Pane-13><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-13><Pane-14><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-14><Pane-15><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-15><Pane-16><Type>2</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><Horiz>0</Horiz><Pane-1>17</Pane-1><Pane-2>22</Pane-2><Panes>2</Panes></Pane-16><Pane-17><Type>2</Type><DockingCX>0</DockingCX><DockingCY>342</DockingCY><Horiz>1</Horiz><Pane-1>18</Pane-1><Pane-2>20</Pane-2><Pane-3>21</Pane-3><Panes>3</Panes></Pane-17><Pane-18><Type>1</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Selected>19</Selected><Panes>1</Panes><Pane-1>19</Pane-1></Pane-18><Pane-19><Type>0</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Title>Workspace</Title><ID>1000</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>18</DockingHolder><FloatingHolder>0</FloatingHolder><LastHolder>18</LastHolder></Pane-19><Pane-20><Type>4</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY></Pane-20><Pane-21><Type>1</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-21><Pane-22><Type>1</Type><DockingCX>250</DockingCX><DockingCY>250</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-22><Pane-23><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>24</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-23><Pane-24><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>25</Pane-1><Panes>1</Panes></Pane-24><Pane-25><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-25><Pane-26><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>planeZ</Title><ID>1101</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>14</DockingHolder><FloatingHolder>29</FloatingHolder><LastHolder>29</LastHolder></Pane-26><Pane-27><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>28</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-27><Pane-28><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>29</Pane-1><Panes>1</Panes></Pane-28><Pane-29><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-29><Pane-30><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>ambient</Title><ID>1102</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>13</DockingHolder><FloatingHolder>33</FloatingHolder><LastHolder>33</LastHolder></Pane-30><Pane-31><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>32</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-31><Pane-32><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>33</Pane-1><Panes>1</Panes></Pane-32><Pane-33><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-33><Pane-34><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>depthBlur</Title><ID>1103</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>12</DockingHolder><FloatingHolder>37</FloatingHolder><LastHolder>37</LastHolder></Pane-34><Pane-35><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>36</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-35><Pane-36><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>37</Pane-1><Panes>1</Panes></Pane-36><Pane-37><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-37><Pane-38><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>dilateSize</Title><ID>1104</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>11</DockingHolder><FloatingHolder>41</FloatingHolder><LastHolder>41</LastHolder></Pane-38><Pane-39><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>40</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-39><Pane-40><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>41</Pane-1><Panes>1</Panes></Pane-40><Pane-41><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-41><Pane-42><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>sampleDist1</Title><ID>1105</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>10</DockingHolder><FloatingHolder>45</FloatingHolder><LastHolder>45</LastHolder></Pane-42><Pane-43><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>44</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-43><Pane-44><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>45</Pane-1><Panes>1</Panes></Pane-44><Pane-45><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-45><Pane-46><Type>0</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Title>sampleDist0</Title><ID>1106</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>9</DockingHolder><FloatingHolder>49</FloatingHolder><LastHolder>49</LastHolder></Pane-46><Pane-47><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>48</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>132</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>427</WindowRectRightPos></Pane-47><Pane-48><Type>2</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Horiz>1</Horiz><Pane-1>49</Pane-1><Panes>1</Panes></Pane-48><Pane-49><Type>1</Type><DockingCX>427</DockingCX><DockingCY>106</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-49><Pane-50><Type>0</Type><DockingCX>374</DockingCX><DockingCY>188</DockingCY><Title>lightPos</Title><ID>1107</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>8</DockingHolder><FloatingHolder>53</FloatingHolder><LastHolder>53</LastHolder></Pane-50><Pane-51><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>52</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>214</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>374</WindowRectRightPos></Pane-51><Pane-52><Type>2</Type><DockingCX>374</DockingCX><DockingCY>188</DockingCY><Horiz>1</Horiz><Pane-1>53</Pane-1><Panes>1</Panes></Pane-52><Pane-53><Type>1</Type><DockingCX>374</DockingCX><DockingCY>188</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-53><Pane-54><Type>0</Type><DockingCX>331</DockingCX><DockingCY>174</DockingCY><Title>LightDir</Title><ID>1108</ID><IconID>-1</IconID><Options>0</Options><DockingHolder>7</DockingHolder><FloatingHolder>57</FloatingHolder><LastHolder>57</LastHolder></Pane-54><Pane-55><Type>3</Type><DockingCX>0</DockingCX><DockingCY>0</DockingCY><TopContaner>56</TopContaner><WindowRectTopPos>26</WindowRectTopPos><WindowRectBottomPos>200</WindowRectBottomPos><WindowRectLeftPos>0</WindowRectLeftPos><WindowRectRightPos>331</WindowRectRightPos></Pane-55><Pane-56><Type>2</Type><DockingCX>331</DockingCX><DockingCY>174</DockingCY><Horiz>1</Horiz><Pane-1>57</Pane-1><Panes>1</Panes></Pane-56><Pane-57><Type>1</Type><DockingCX>331</DockingCX><DockingCY>174</DockingCY><Selected>0</Selected><Panes>0</Panes></Pane-57><Summary><TopContainer>6</TopContainer><Client>20</Client><Panes>57</Panes></Summary></Application_Layout></DockingPaneLayouts>
+]]></RmTextDataBlock>
+     <RmRegistryBranch NAME="RmPreviewDx9Window" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EffectPlacementRepository" API="" XML_VERSION="RenderMonkey 1.5">
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.ShadowMapping" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Width" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Height" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="ShowStatus" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="3" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Visible" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows14Pass" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Width" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Height" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="ShowStatus" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="3" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Visible" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Width" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Height" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="ShowStatus" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Visible" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Volume Effects.Shadow Volume _ Read NOTE before running" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Width" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Height" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="350" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="ShowStatus" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="3" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Visible" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmIntegerVariable NAME="Minimized Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+      </RmRegistryBranch>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmScalarEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="NodeRepository" API="" XML_VERSION="RenderMonkey 1.5">
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.planeSize" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1100" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.planeZ" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1101" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.ambient" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1102" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.depthBlur" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1103" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.dilateSize" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1104" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.sampleDist1" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1105" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.sampleDist0" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1106" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+      </RmRegistryBranch>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmVectorEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="NodeRepository" API="" XML_VERSION="RenderMonkey 1.5">
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows.lightPos" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1107" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       </RmRegistryBranch>
+      </RmRegistryBranch>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmDynamicVariableEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="NodeRepository" API="" XML_VERSION="RenderMonkey 1.5">
+       <RmRegistryBranch NAME="Effect Workspace.Shadow Volume Effects.Shadow Volume _ Read NOTE before running.LightDir" API="" XML_VERSION="RenderMonkey 1.5">
+        <RmIntegerVariable NAME="DockPaneID" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1108" MIN="-10" MAX="10" CLAMP="FALSE"/>
+        <RmBooleanVariable NAME="ShowSetup" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="TRUE"/>
+       </RmRegistryBranch>
+      </RmRegistryBranch>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmPreviewGLPreview" API="" XML_VERSION="RenderMonkey 1.5"/>
+     <RmRegistryBranch NAME="NoteEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmRenderableTextureEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmRenderTargetEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmShaderEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="Effect Workspace.Shadow Effects.SoftShadows" API="" XML_VERSION="RenderMonkey 1.5">
+       <RmRegistryBranch NAME="Disassembly" API="" XML_VERSION="RenderMonkey 1.5"/>
+       <RmStringVariable NAME="Editing Shader" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+Vertex Shader]]></RmTextDataBlock></RmStringVariable>
+       <RmStringVariable NAME="Editing Pass" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+Shadow]]></RmTextDataBlock></RmStringVariable>
+       <RmIntegerVariable NAME="Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="58" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="Width" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="630" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="Height" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="368" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="ShowStatus" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="3" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="Visible" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="Minimized X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="Minimized Y" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-1" MIN="-10" MAX="10" CLAMP="FALSE"/>
+       <RmIntegerVariable NAME="X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="44" MIN="-10" MAX="10" CLAMP="FALSE"/>
+      </RmRegistryBranch>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmRenderStateBlockEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmTextureObjectEditor" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+     <RmRegistryBranch NAME="RmTextureGenerator" API="" XML_VERSION="RenderMonkey 1.5">
+      <RmRegistryBranch NAME="EditNodeRepository" API="" XML_VERSION="RenderMonkey 1.5"/>
+     </RmRegistryBranch>
+    </RmRegistryBranch>
+   </RmRegistryBranch>
+  </RmRegistryBranch>
+  <RmStringVariable NAME="Header" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+$File: //depot/3darg/Tools/RenderMonkey/Examples/DX9/Shadows.rfx $
+$Revision: #13 $
+
+© ATI Technologies, 2003]]></RmTextDataBlock></RmStringVariable>
+  <RmEffectGroup NAME="Shadow Effects" API="">
+   <RmDirectXEffect NAME="ShadowMapping" API="D3D" ACTIVE_CAMERA="">
+    <RmFloatVariable NAME="backProjectionCut" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="78.000000" MIN="0.000000" MAX="200.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="shadowBias" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.004000" MIN="0.000000" MAX="0.010000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="distanceScale" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.001480" MIN="0.000000" MAX="0.004000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="Ks" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.620000" MIN="0.000000" MAX="1.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="Kd" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="1.000000" MIN="0.000000" MAX="1.000000" CLAMP="TRUE"/>
+    <RmFloatVariable NAME="Ka" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.100000" MIN="0.000000" MAX="1.000000" CLAMP="FALSE"/>
+    <RmVectorVariable NAME="lightPos" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="4.000000" VALUE_1="71.999992" VALUE_2="99.999992" VALUE_3="1.000000" MIN="-100.000000" MAX="100.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    <RmColorVariable NAME="platformColor" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE_0="1.000000" VALUE_1="0.679020" VALUE_2="0.300413" VALUE_3="1.000000"/>
+    <Rm2DTextureVariable NAME="SpotLight" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\Spotlight.jpg" ORIGIN="0"/>
+    <RmRenderableTexture NAME="ShadowMap" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="762" HEIGHT="542" FORMAT="111" USE_VIEWPORT_DIMENSIONS="TRUE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmPass NAME="Platform" API="D3D" PASS_INDEX="3" ENABLED="TRUE">
+     <RmModelReference NAME="Disc" API=""/>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float4 view_position: register(c5);
+float4x4 proj_matrix: register(c6);
+float distanceScale: register(c10);
+float time_0_X: register(c11);
+struct VS_OUTPUT {
+   float4 Pos:       POSITION;
+   float3 normal:    TEXCOORD0;
+   float3 lightVec:  TEXCOORD1;
+   float3 viewVec:   TEXCOORD2;
+   float4 shadowCrd: TEXCOORD3;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   // Animate the light position.
+   // Comment out this code to use a static light.
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 lightPos;
+   lightPos.x = cos(1.321 * time_0_X);
+   lightPos.z = sin(0.923 * time_0_X);
+   lightPos.xz = 100 * normalize(lightPos.xz);
+   lightPos.y = 100;
+
+   // Flip, scale and translate our model to suit our scene
+   // In real applications, this work should normally be
+   // done at load time, alternatively if animation is desired,
+   // be altered by a world matrix.
+   Pos.xyz = 5 * Pos.xyz;
+   Pos.y -= 30;
+   normal = normal.xyz;
+
+   Out.Pos = mul(view_proj_matrix, Pos);  
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = distanceScale * (lightPos - Pos.xyz);
+   Out.viewVec = view_position - Pos.xyz;
+
+   // Create view vectors for the light, looking at (0,0,0)
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 dirZ = -normalize(lightPos);
+   float3 up = float3(0,0,1);
+   float3 dirX = cross(up, dirZ);
+   float3 dirY = cross(dirZ, dirX);
+
+   // Transform into light's view space.
+   // In real applications we would be better off using a 4x4
+   // matrix instead, but for this shader it's cheaper to
+   // just transpose and rotate into light's view space.
+   float4 pos;
+   Pos.xyz -= lightPos;
+   pos.x = dot(dirX, Pos);
+   pos.y = dot(dirY, Pos);
+   pos.z = dot(dirZ, Pos);
+   pos.w = 1;
+
+   // Project it. For this sample using the normal projection
+   // matrix suffices, however, real applications will typically
+   // use a separate projection matrix for each light depending
+   // on its properties such as FOV and range.
+   float4 sPos = mul(proj_matrix, pos);
+
+   // Use projective texturing to map the position of each fragment
+   // to its corresponding texel in the shadow map.
+   sPos.z += 10;
+   Out.shadowCrd.x = 0.5 * (sPos.z + sPos.x);
+   Out.shadowCrd.y = 0.5 * (sPos.z - sPos.y);
+   Out.shadowCrd.z = 0;
+   Out.shadowCrd.w = sPos.z;
+
+   return Out;
+}
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="distanceScale" API="" REGISTER="10"/>
+      <RmShaderConstant NAME="proj_matrix" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="time_0_X" API="" REGISTER="11"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float backProjectionCut;
+float Ka;
+float Kd;
+float Ks;
+float4 platformColor;
+float shadowBias;
+sampler ShadowMap;
+sampler SpotLight;
+
+float4 main( float3 normal: TEXCOORD0, 
+             float3 lightVec: TEXCOORD1, 
+             float3 viewVec: TEXCOORD2, 
+             float4 shadowCrd: TEXCOORD3) : COLOR 
+{
+   normal = normalize(normal);
+   
+   // Radial distance
+   float depth = length(lightVec);
+   // Normalizes light vector
+   lightVec /= depth;
+
+   // Standard lighting
+   float diffuse = saturate(dot(lightVec, normal));
+   float specular = pow(saturate(dot(reflect(-normalize(viewVec), normal), lightVec)), 16);
+
+   // The depth of the fragment closest to the light
+   float shadowMap = tex2Dproj(ShadowMap, shadowCrd);
+   // A spot image of the spotlight
+   float spotLight = tex2Dproj(SpotLight, shadowCrd);
+   // If the depth is larger than the stored depth, this fragment
+   // is not the closest to the light, that is we are in shadow.
+   // Otherwise, we're lit. Add a bias to avoid precision issues.
+   float shadow = (depth < shadowMap + shadowBias);
+   // Cut back-projection, that is, make sure we don't lit
+   // anything behind the light. Theoretically, you should just
+   // cut at w = 0, but in practice you'll have to cut at a
+   // fairly high positive number to avoid precision issue when
+   // coordinates approaches zero. 
+   shadow *= (shadowCrd.w > backProjectionCut);
+   // Modulate with spotlight image
+   shadow *= spotLight;
+
+   // Shadow any light contribution except ambient
+   return Ka * platformColor + (Kd * diffuse * platformColor + Ks * specular) * shadow;
+   
+}
+
+
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="ShadowMap" API="" REGISTER="0"/>
+      <RmSampler NAME="SpotLight" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="Ks" API="" REGISTER="3"/>
+      <RmShaderConstant NAME="Ka" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="Kd" API="" REGISTER="2"/>
+      <RmShaderConstant NAME="backProjectionCut" API="" REGISTER="0"/>
+      <RmShaderConstant NAME="platformColor" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="shadowBias" API="" REGISTER="5"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="SpotLight" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="SpotLight" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="ShadowMap" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="ShadowMap" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Depth" API="D3D" PASS_INDEX="0" ENABLED="TRUE">
+     <RmModelReference NAME="Elephant" API=""/>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float distanceScale: register(c5);
+float4x4 proj_matrix: register(c6);
+float time_0_X: register(c10);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+   float3 lightVec: TEXCOORD0;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   // Animate the light position.
+   // Comment out this code to use a static light.
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 lightPos;
+   lightPos.x = cos(1.321 * time_0_X);
+   lightPos.z = sin(0.923 * time_0_X);
+   lightPos.xz = 100 * normalize(lightPos.xz);
+   lightPos.y = 100;
+
+   // Create view vectors for the light, looking at (0,0,0)
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 dirZ = -normalize(lightPos);
+   float3 up = float3(0,0,1);
+   float3 dirX = cross(up, dirZ);
+   float3 dirY = cross(dirZ, dirX);
+
+   // Transform into light's view space.
+   // In real applications we would be better off using a 4x4
+   // matrix instead, but for this shader it's cheaper to
+   // just transpose and rotate into light's view space.
+   float4 pos;
+   Pos.xyz -= lightPos;
+   pos.x = dot(dirX, Pos);
+   pos.y = dot(dirY, Pos);
+   pos.z = dot(dirZ, Pos);
+   pos.w = 1;
+
+   // Project it. For this sample using the normal projection
+   // matrix suffices, however, real applications will typically
+   // use a separate projection matrix for each light depending
+   // on its properties such as FOV and range.
+   Out.Pos = mul(proj_matrix, pos);
+   Out.lightVec = distanceScale * Pos;
+
+   return Out;
+}
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="distanceScale" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="proj_matrix" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="time_0_X" API="" REGISTER="10"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main(float3 lightVec: TEXCOORD0) : COLOR {
+   // Output radial distance
+   return length(lightVec);
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmRenderTarget NAME="ShadowMap" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="16777215" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Light" API="D3D" PASS_INDEX="1" ENABLED="TRUE">
+     <RmModelReference NAME="Sphere" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D"/>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float time_0_X: register(c5);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   // Animate the light position.
+   // Comment out this code to use a static light.
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 lightPos;
+   lightPos.x = cos(1.321 * time_0_X);
+   lightPos.z = sin(0.923 * time_0_X);
+   lightPos.xz = 100 * normalize(lightPos.xz);
+   lightPos.y = 100;
+
+   // Compensate for source model not being a perfect sphere.
+   Pos.xyz = 7 * normalize(Pos.xyz);
+   // Put light in position
+   Pos.xyz += lightPos;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+
+   return Out;
+}
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="time_0_X" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Object" API="D3D" PASS_INDEX="2" ENABLED="TRUE">
+     <RmModelReference NAME="Elephant" API=""/>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float4 view_position: register(c5);
+float4x4 proj_matrix: register(c6);
+float distanceScale: register(c10);
+float time_0_X: register(c11);
+struct VS_OUTPUT {
+   float4 Pos:       POSITION;
+   float3 normal:    TEXCOORD0;
+   float3 lightVec : TEXCOORD1;
+   float3 viewVec:   TEXCOORD2;
+   float4 shadowCrd: TEXCOORD3;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   // Animate the light position.
+   // Comment out this code to use a static light.
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 lightPos;
+   lightPos.x = cos(1.321 * time_0_X);
+   lightPos.z = sin(0.923 * time_0_X);
+   lightPos.xz = 100 * normalize(lightPos.xz);
+   lightPos.y = 100;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = distanceScale * (lightPos - Pos.xyz);
+   Out.viewVec = view_position - Pos.xyz;
+
+   // Create view vectors for the light, looking at (0,0,0)
+   // In real applications this work is better done on
+   // the CPU as it's constant for the whole scene.
+   float3 dirZ = -normalize(lightPos);
+   float3 up = float3(0,0,1);
+   float3 dirX = cross(up, dirZ);
+   float3 dirY = cross(dirZ, dirX);
+
+   // Transform into light's view space.
+   // In real applications we would be better off using a 4x4
+   // matrix instead, but for this shader it's cheaper to
+   // just transpose and rotate into light's view space.
+   float4 pos;
+   Pos.xyz -= lightPos;
+   pos.x = dot(dirX, Pos);
+   pos.y = dot(dirY, Pos);
+   pos.z = dot(dirZ, Pos);
+   pos.w = 1;
+
+   // Project it. For this sample using the normal projection
+   // matrix suffices, however, real applications will typically
+   // use a separate projection matrix for each light depending
+   // on its properties such as FOV and range.
+   float4 sPos = mul(proj_matrix, pos);
+
+   // Use projective texturing to map the position of each fragment
+   // to its corresponding texel in the shadow map.
+   sPos.z += 10;
+   Out.shadowCrd.x = 0.5 * (sPos.z + sPos.x);
+   Out.shadowCrd.y = 0.5 * (sPos.z - sPos.y);
+   Out.shadowCrd.z = 0;
+   Out.shadowCrd.w = sPos.z;
+
+   return Out;
+}
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="distanceScale" API="" REGISTER="10"/>
+      <RmShaderConstant NAME="proj_matrix" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="time_0_X" API="" REGISTER="11"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float backProjectionCut: register(c2);
+float Ka: register(c3);
+float Kd: register(c4);
+float Ks: register(c5);
+float4 modelColor: register(c0);
+float shadowBias: register(c1);
+sampler ShadowMap: register(s0);
+sampler SpotLight: register(s1);
+float4 main(float3 normal: TEXCOORD0, float3 lightVec: TEXCOORD1, float3 viewVec: TEXCOORD2, float4 shadowCrd: TEXCOORD3) : COLOR {
+   normal = normalize(normal);
+   // Radial distance
+   float depth = length(lightVec);
+   // Normalizes light vector
+   lightVec /= depth;
+
+   // Standard lighting
+   float diffuse = saturate(dot(lightVec, normal));
+   float specular = pow(saturate(dot(reflect(-normalize(viewVec), normal), lightVec)), 16);
+
+   // The depth of the fragment closest to the light
+   float shadowMap = tex2Dproj(ShadowMap, shadowCrd);
+   // A spot image of the spotlight
+   float spotLight = tex2Dproj(SpotLight, shadowCrd);
+   // If the depth is larger than the stored depth, this fragment
+   // is not the closest to the light, that is we are in shadow.
+   // Otherwise, we're lit. Add a bias to avoid precision issues.
+   float shadow = (depth < shadowMap + shadowBias);
+   // Cut back-projection, that is, make sure we don't lit
+   // anything behind the light. Theoretically, you should just
+   // cut at w = 0, but in practice you'll have to cut at a
+   // fairly high positive number to avoid precision issue when
+   // coordinates approaches zero. 
+   shadow *= (shadowCrd.w > backProjectionCut);
+   // Modulate with spotlight image
+   shadow *= spotLight;
+
+   // Shadow any light contribution except ambient
+   return Ka * modelColor + (Kd * diffuse * modelColor + Ks * specular) * shadow;
+}
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="ShadowMap" API="" REGISTER="0"/>
+      <RmSampler NAME="SpotLight" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="Ks" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="Ka" API="" REGISTER="3"/>
+      <RmShaderConstant NAME="Kd" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="backProjectionCut" API="" REGISTER="2"/>
+      <RmShaderConstant NAME="modelColor" API="" REGISTER="0"/>
+      <RmShaderConstant NAME="shadowBias" API="" REGISTER="1"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="SpotLight" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="SpotLight" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="ShadowMap" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="ShadowMap" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+   </RmDirectXEffect>
+   <RmDirectXEffect NAME="SoftShadows14Pass" API="D3D" ACTIVE_CAMERA="Camera">
+    <RmCamera NAME="Camera" API="" CAMERA_POSITION_X="-340.246399" CAMERA_POSITION_Y="264.307617" CAMERA_POSITION_Z="-567.498657" LOOK_AT_VECTOR_X="0.000000" LOOK_AT_VECTOR_Y="0.000000" LOOK_AT_VECTOR_Z="1.000000" UP_VECTOR_X="0.152414" UP_VECTOR_Y="0.927355" UP_VECTOR_Z="0.341735" FOV="45.000000" NEAR_CLIP_PLANE="1.000000" FAR_CLIP_PLANE="1000.000000"/>
+    <RmFloatVariable NAME="planeZ" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="-36.000000" MIN="-100.000000" MAX="0.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="lightSize" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="12.400000" MIN="0.000000" MAX="40.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="ambient" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0.300000" MIN="0.000000" MAX="1.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="shadowScale" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="0.058000" MIN="0.000000" MAX="0.100000" CLAMP="FALSE"/>
+    <RmVectorVariable NAME="lightPos" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="216.000000" VALUE_1="288.000000" VALUE_2="104.000000" VALUE_3="0.000000" MIN="-400.000000" MAX="400.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    <RmRenderableTexture NAME="RT2" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="RT1" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="RT0" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="RT3" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmPass NAME="Shadow14" API="D3D" PASS_INDEX="16" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="4" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT3" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.000000" VALUE_1="0.000000" VALUE_2="0.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Plane" API="D3D" PASS_INDEX="17" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="ScreenAlignedQuad" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ALPHABLENDENABLE" API="D3D" STATE="27" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="15" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float ambient: register(c1);
+float shadowScale: register(c0);
+sampler Floor: register(s0);
+sampler RT0: register(s1);
+sampler RT1: register(s2);
+sampler RT2: register(s3);
+sampler RT3: register(s4);
+float4 main(float2 texCoord: TEXCOORD0, float3 normal: TEXCOORD1, float3 lightVec: TEXCOORD2, float3 viewVec: TEXCOORD3, float4 eyeLinear: TEXCOORD4) : COLOR {
+   normal   = normalize(normal);
+   lightVec = normalize(lightVec);
+   viewVec  = normalize(viewVec);
+
+   float4 base = tex2D(Floor, texCoord);
+
+   // Sum all samples up
+   float shadow = dot(tex2Dproj(RT0, eyeLinear), 1);
+   shadow += dot(tex2Dproj(RT1, eyeLinear), 1);
+   shadow += dot(tex2Dproj(RT2, eyeLinear), 1);
+   shadow += dot(tex2Dproj(RT3, eyeLinear).xyz, 1);
+
+   // Form the shadow factor
+   shadow = saturate(1 - shadowScale * shadow);
+
+   // Simple lighting
+   float diffuse = 0.5 + 0.5 * dot(lightVec, normal);
+
+   return (shadow * diffuse + ambient) * base;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="Floor" API="" REGISTER="0"/>
+      <RmSampler NAME="RT0" API="" REGISTER="1"/>
+      <RmSampler NAME="RT1" API="" REGISTER="2"/>
+      <RmSampler NAME="RT2" API="" REGISTER="3"/>
+      <RmSampler NAME="RT3" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="ambient" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="shadowScale" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 view_position: register(c6);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+   float2 texCoord:  TEXCOORD0;
+   float3 normal:    TEXCOORD1;
+   float3 lightVec:  TEXCOORD2;
+   float3 viewVec:   TEXCOORD3;
+   float4 eyeLinear: TEXCOORD4;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   // Object-linear texgen
+   Out.texCoord = Pos.xy;
+
+   // Put the plane into place
+   Pos.xy *= 500;
+   Pos.z = Pos.y;
+   Pos.y = planeZ;
+
+   float4 cPos = mul(view_proj_matrix, Pos);
+   Out.Pos = cPos;
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = lightPos - Pos.xyz;
+   Out.viewVec = view_position - Pos.xyz;
+
+   // Compensate for near clip plane
+   // The default near clip plane is 10 in RenderMonkey
+   cPos.z += 10;
+
+   // Eye-linear texgen
+   Out.eyeLinear.x = 0.5 * (cPos.z + cPos.x);
+   Out.eyeLinear.y = 0.5 * (cPos.z - cPos.y);
+   Out.eyeLinear.z = 0;
+   Out.eyeLinear.w = cPos.z;
+
+   return Out;
+}
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="RT2" API="D3D" STATE_INDEX="2">
+      <RmTextureReference NAME="RT2" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="RT3" API="D3D" STATE_INDEX="3">
+      <RmTextureReference NAME="RT3" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="Floor" API="D3D" STATE_INDEX="4">
+      <RmTextureReference NAME="Wood Floor" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="1" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="1" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="RT0" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="RT0" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="RT1" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="RT1" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Object" API="D3D" PASS_INDEX="0" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 modelColor: register(c0);
+float4 main(float3 normal: TEXCOORD0, float3 lightVec: TEXCOORD1, float3 viewVec: TEXCOORD2) : COLOR {
+   normal = normalize(normal);
+   lightVec = normalize(lightVec);
+   viewVec = normalize(viewVec);
+
+   // Basic lighting
+   float diffuse = 0.5 + 0.5 * dot(lightVec, normal);
+   float specular = pow(saturate(dot(reflect(-viewVec, normal), lightVec)), 16);
+
+   return diffuse * modelColor + 0.5 * specular;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="modelColor" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float4 view_position: register(c5);
+struct VS_OUTPUT {
+   float4 Pos:      POSITION;
+   float3 normal:   TEXCOORD0;
+   float3 lightVec: TEXCOORD1;
+   float3 viewVec:  TEXCOORD2;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = lightPos - Pos.xyz;
+   Out.viewVec = view_position - Pos.xyz;
+
+   return Out;
+}
+
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Light" API="D3D" PASS_INDEX="1" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Sphere" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float lightSize: register(c5);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   // Compensate for model not being a perfect sphere around origin
+   Pos.xyz = lightSize * normalize(Pos.xyz);
+   // Put light into place
+   Pos.xyz += lightPos;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+
+   return Out;
+}
+
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Shadow0" API="D3D" PASS_INDEX="2" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT0" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.577350" VALUE_1="0.577350" VALUE_2="0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow1" API="D3D" PASS_INDEX="3" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="2" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT0" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.577350" VALUE_1="0.577350" VALUE_2="-0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow2" API="D3D" PASS_INDEX="4" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="4" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT0" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.577350" VALUE_1="-0.577350" VALUE_2="0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow3" API="D3D" PASS_INDEX="5" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="8" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT0" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.577350" VALUE_1="-0.577350" VALUE_2="-0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow4" API="D3D" PASS_INDEX="6" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT1" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="-0.577350" VALUE_1="0.577350" VALUE_2="0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow5" API="D3D" PASS_INDEX="7" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="2" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT1" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="-0.577350" VALUE_1="0.577350" VALUE_2="-0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow6" API="D3D" PASS_INDEX="8" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="4" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT1" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="-0.577350" VALUE_1="-0.577350" VALUE_2="0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow7" API="D3D" PASS_INDEX="9" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="8" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT1" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="-0.577350" VALUE_1="-0.577350" VALUE_2="-0.577350" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow8" API="D3D" PASS_INDEX="10" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT2" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="1.000000" VALUE_1="0.000000" VALUE_2="0.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow9" API="D3D" PASS_INDEX="11" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="2" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT2" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="-1.000000" VALUE_1="0.000000" VALUE_2="0.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow10" API="D3D" PASS_INDEX="12" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="4" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT2" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.000000" VALUE_1="1.000000" VALUE_2="0.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow11" API="D3D" PASS_INDEX="13" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="8" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT2" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.000000" VALUE_1="-1.000000" VALUE_2="0.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow12" API="D3D" PASS_INDEX="14" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT3" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.000000" VALUE_1="0.000000" VALUE_2="1.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+    <RmPass NAME="Shadow13" API="D3D" PASS_INDEX="15" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Teapot" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="2" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1.0;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 offset: register(c6);
+float lightSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   lightPos += lightSize * offset;
+
+   // The plane which we project the shadow on
+   float4 plane = float4(0, 1, 0, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project into plane to get shadow's position
+   float4 sPos = mul(shadowMatrix, Pos);
+   Out.Pos = mul(view_proj_matrix, sPos);
+
+   return Out;
+}
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="lightSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="offset" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="RT3" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="FALSE" DEPTH_CLEAR="FALSE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmVectorVariable NAME="offset" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE_0="0.000000" VALUE_1="0.000000" VALUE_2="-1.000000" VALUE_3="0.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    </RmPass>
+   </RmDirectXEffect>
+   <RmDirectXEffect NAME="SoftShadows" API="D3D" ACTIVE_CAMERA="Camera">
+    <RmCamera NAME="Camera" API="" CAMERA_POSITION_X="-425.272003" CAMERA_POSITION_Y="-251.844940" CAMERA_POSITION_Z="151.577988" LOOK_AT_VECTOR_X="0.000000" LOOK_AT_VECTOR_Y="0.000000" LOOK_AT_VECTOR_Z="1.000000" UP_VECTOR_X="0.275480" UP_VECTOR_Y="0.114363" UP_VECTOR_Z="0.954480" FOV="45.000000" NEAR_CLIP_PLANE="1.000000" FAR_CLIP_PLANE="2000.000000"/>
+    <RmFloatVariable NAME="planeSize" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="510.000000" MIN="0.000000" MAX="1000.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="planeZ" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="-32.000000" MIN="-100.000000" MAX="0.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="ambient" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.130000" MIN="0.000000" MAX="1.000000" CLAMP="TRUE"/>
+    <RmFloatVariable NAME="depthBlur" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="4.350000" MIN="0.000000" MAX="15.000000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="dilateSize" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.006000" MIN="0.000000" MAX="0.100000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="sampleDist1" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.062000" MIN="0.000000" MAX="0.200000" CLAMP="FALSE"/>
+    <RmFloatVariable NAME="sampleDist0" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE="0.254000" MIN="0.000000" MAX="0.200000" CLAMP="FALSE"/>
+    <RmVectorVariable NAME="lightPos" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE_0="200.000000" VALUE_1="104.000000" VALUE_2="80.000000" VALUE_3="0.000000" MIN="-400.000000" MAX="400.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+    <Rm2DTextureVariable NAME="Floor" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\Wood.dds" ORIGIN="0"/>
+    <RmRenderableTexture NAME="Blur1" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="Blur0" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="Shadow" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="1024" HEIGHT="1024" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="Dilate" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmRenderableTexture NAME="Depth" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="" ORIGIN="0" WIDTH="512" HEIGHT="512" FORMAT="21" USE_VIEWPORT_DIMENSIONS="FALSE" GENERATE_MIPMAPS="TRUE" WIDTH_RATIO="1.000000" HEIGHT_RATIO="1.000000"/>
+    <RmStreamMap NAME="PN Stream Mapping" API="">
+     <RmStream NAME="Normal3" API="" STRIDE="24">
+      <RmStreamChannel NAME="Position_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="0" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Normal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="1" USAGE="3" USAGE_INDEX="0"/>
+     </RmStream>
+    </RmStreamMap>
+    <RmModelData NAME="Sphere" API="" FILE_NAME="..\..\Media\Models\Sphere.3ds" ORIENTATION="0"/>
+    <RmPass NAME="Shadow" API="D3D" PASS_INDEX="2" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Sphere" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ALPHABLENDENABLE" API="D3D" STATE="27" VALUE="0" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float planeSize: register(c6);
+
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   // The z + planeZ = 0 plane
+   float4 plane = float4(0, 0, 1, -planeZ);
+
+   // We create a matrix that projects the model down into
+   // the plane. This is a task that's better done on the
+   // CPU and just passed to the vertex shader since it's
+   // constant for the whole model. However,in RenderMonkey
+   // we don't have that choice and will have to create it
+   // in the vertex shader instead.
+   float4x4 shadowMatrix;
+
+   shadowMatrix[0] = -lightPos.x * plane;
+   shadowMatrix[1] = -lightPos.y * plane;
+   shadowMatrix[2] = -lightPos.z * plane;
+   shadowMatrix[3] = -plane;
+
+   float dist = dot(lightPos, plane.xyz) - planeZ;
+
+   shadowMatrix[0].x += dist;
+   shadowMatrix[1].y += dist;
+   shadowMatrix[2].z += dist;
+   shadowMatrix[3].w += dist;
+
+   // Project the vertex down in the plane
+   float4 sPos = mul(shadowMatrix, Pos);
+   // Map the plane onto the rendertarget. The rendertarget
+   // will cover exactly the quad we put shadows on.
+   Out.Pos = float4(planeZ * sPos.xy / (planeSize * sPos.z), 0, 1);
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="planeSize" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+     </RmHLSLShader>
+     <RmRenderTarget NAME="Shadow" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Blur0" API="D3D" PASS_INDEX="3" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="ScreenAlignedQuad" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float sampleDist0: register(c0);
+float depthBlur: register(c1);
+sampler Dilate: register(s1);
+sampler Shadow: register(s0);
+const float2 samples[12] = {
+   -0.326212, -0.405805,
+   -0.840144, -0.073580,
+   -0.695914,  0.457137,
+   -0.203345,  0.620716,
+    0.962340, -0.194983,
+    0.473434, -0.480026,
+    0.519456,  0.767022,
+    0.185461, -0.893124,
+    0.507431,  0.064425,
+    0.896420,  0.412458,
+   -0.321940, -0.932615,
+   -0.791559, -0.597705,
+};
+
+float4 main(float2 texCoord: TEXCOORD) : COLOR {
+   float4 sum = tex2D(Shadow, texCoord);
+   // Blur filter kernel size
+   float x = tex2D(Dilate, texCoord);
+   float size = sampleDist0 * pow(x, depthBlur);
+
+   for (int i = 0; i < 12; i++){
+      sum += tex2D(Shadow, texCoord + size * samples[i]);
+   }
+   return sum / 13;
+}
+
+]]></RmShaderCode>
+      <RmSampler NAME="Dilate" API="" REGISTER="1"/>
+      <RmSampler NAME="Shadow" API="" REGISTER="0"/>
+      <RmShaderConstant NAME="depthBlur" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="sampleDist0" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+   float2 texCoord: TEXCOORD;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+   
+   // Clean up inaccuracies
+   Pos.xy = sign(Pos.xy);
+   Out.Pos = float4(Pos.xy, 0, 1);
+   // Image-space
+   Out.texCoord.x = 0.5 * (1 + Pos.x);
+   Out.texCoord.y = 0.5 * (1 - Pos.y);
+
+   return Out;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmRenderTarget NAME="Blur0" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="Shadow" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="Shadow" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="Dilate" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="Dilate" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Blur1" API="D3D" PASS_INDEX="4" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="ScreenAlignedQuad" API=""/>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float sampleDist1: register(c0);
+float depthBlur: register(c1);
+sampler Blur0: register(s0);
+sampler Dilate: register(s1);
+const float2 samples[12] = {
+   -0.326212, -0.405805,
+   -0.840144, -0.073580,
+   -0.695914,  0.457137,
+   -0.203345,  0.620716,
+    0.962340, -0.194983,
+    0.473434, -0.480026,
+    0.519456,  0.767022,
+    0.185461, -0.893124,
+    0.507431,  0.064425,
+    0.896420,  0.412458,
+   -0.321940, -0.932615,
+   -0.791559, -0.597705,
+};
+
+float4 main(float2 texCoord: TEXCOORD) : COLOR {
+   float4 sum = tex2D(Blur0, texCoord);
+   // Blur filter kernel size
+   float x = tex2D(Dilate, texCoord);
+   float size = sampleDist1 * pow(x, depthBlur);
+
+   for (int i = 0; i < 12; i++){
+      sum += tex2D(Blur0, texCoord + size * samples[i]);
+   }
+   return sum / 13;
+}
+
+]]></RmShaderCode>
+      <RmSampler NAME="Blur0" API="" REGISTER="0"/>
+      <RmSampler NAME="Dilate" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="depthBlur" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="sampleDist1" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+   float2 texCoord: TEXCOORD;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+   
+   // Clean up inaccuracies
+   Pos.xy = sign(Pos.xy);
+   Out.Pos = float4(Pos.xy, 0, 1);
+   // Image-space
+   Out.texCoord.x = 0.5 * (1 + Pos.x);
+   Out.texCoord.y = 0.5 * (1 - Pos.y);
+
+   return Out;
+}
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmRenderTarget NAME="Blur1" API="" INDEX="0" RENDER_TO_SCREEN="FALSE" COLOR_CLEAR="TRUE" DEPTH_CLEAR="TRUE" CLEAR_COLOR_VALUE="0" DEPTH_CLEAR_VALUE="1.000000"/>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="Blur0" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="Blur0" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="Dilate" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="Dilate" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Plane" API="D3D" PASS_INDEX="5" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="ScreenAlignedQuad" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ALPHABLENDENABLE" API="D3D" STATE="27" VALUE="0" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float ambient: register(c0);
+sampler Blur1: register(s0);
+sampler Floor: register(s1);
+float4 main(float2 texCoord: TEXCOORD0, float3 normal: TEXCOORD1, float3 lightVec: TEXCOORD2, float3 viewVec: TEXCOORD3) : COLOR {
+   normal   = normalize(normal);
+   lightVec = normalize(lightVec);
+   viewVec  = normalize(viewVec);
+
+   float4 base = tex2D(Floor, texCoord);
+
+   // The last blur gives us the shadow factor
+   float shadow = 1 - tex2D(Blur1, texCoord);
+
+   // Basic lighting
+   float diffuse = 0.5 + 0.5 * dot(lightVec, normal);
+   float specular = pow(saturate(dot(reflect(-viewVec, normal), lightVec)), 16);
+
+   return (shadow * diffuse + ambient) * base + 0.4 * shadow * specular;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="Blur1" API="" REGISTER="0"/>
+      <RmSampler NAME="Floor" API="" REGISTER="1"/>
+      <RmShaderConstant NAME="ambient" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float planeZ: register(c4);
+float4 lightPos: register(c5);
+float4 view_position: register(c6);
+float planeSize: register(c7);
+struct VS_OUTPUT {
+   float4 Pos:      POSITION;
+   float2 texCoord: TEXCOORD0;
+   float3 normal:   TEXCOORD1;
+   float3 lightVec: TEXCOORD2;
+   float3 viewVec:  TEXCOORD3;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   // Image-space
+   Out.texCoord.x = 0.5 * (1 + Pos.x);
+   Out.texCoord.y = 0.5 * (1 - Pos.y);
+
+   // Put the plane into place
+   Pos.xy *= planeSize;
+   Pos.z = planeZ;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = lightPos - Pos.xyz;
+   Out.viewVec  = view_position - Pos.xyz;
+
+   return Out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="planeSize" API="" REGISTER="7"/>
+      <RmShaderConstant NAME="planeZ" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="6"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+     <RmTextureObject NAME="Blur1" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="Blur1" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="Floor" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="Floor" API=""/>
+      <RmState NAME="D3DSAMP_ADDRESSU" API="D3D" STATE="1" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_ADDRESSV" API="D3D" STATE="2" VALUE="3" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Object" API="D3D" PASS_INDEX="0" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Sphere" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 modelColor: register(c0);
+float4 main(float3 normal: TEXCOORD0, float3 lightVec: TEXCOORD1, float3 viewVec: TEXCOORD2) : COLOR {
+   normal = normalize(normal);
+   lightVec = normalize(lightVec);
+   viewVec = normalize(viewVec);
+
+   // Simple standard lighting
+   float diffuse = 0.5 + 0.5 * dot(lightVec, normal);
+   float specular = pow(saturate(dot(reflect(-viewVec, normal), lightVec)), 16);
+
+   return diffuse * modelColor + 0.5 * specular;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="modelColor" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+float4 view_position: register(c5);
+struct VS_OUTPUT {
+   float4 Pos:      POSITION;
+   float3 normal:   TEXCOORD0;
+   float3 lightVec: TEXCOORD1;
+   float3 viewVec:  TEXCOORD2;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION, float3 normal: NORMAL){
+   VS_OUTPUT Out;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+   // World-space lighting
+   Out.normal = normal;
+   Out.lightVec = lightPos - Pos.xyz;
+   Out.viewVec = view_position - Pos.xyz;
+
+   return Out;
+}
+
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_position" API="" REGISTER="5"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+    <RmPass NAME="Light" API="D3D" PASS_INDEX="1" ENABLED="TRUE">
+     <RmCameraReference NAME="Camera" API="" USE_ACTIVE_CAMERA="FALSE"/>
+     <RmModelReference NAME="Sphere" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4 main() : COLOR {
+   return 1;
+}
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_1_1" ENTRY_POINT="main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix: register(c0);
+float4 lightPos: register(c4);
+struct VS_OUTPUT {
+   float4 Pos: POSITION;
+};
+
+VS_OUTPUT main(float4 Pos: POSITION){
+   VS_OUTPUT Out;
+
+   // Compensate for model not being a
+   // perfect sphere around origin
+   Pos.xyz = 10 * normalize(Pos.xyz);
+   // Get the light in place
+   Pos.xyz += lightPos;
+
+   Out.Pos = mul(view_proj_matrix, Pos);
+
+   return Out;
+}
+
+
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="lightPos" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="PN Stream Mapping" API=""/>
+    </RmPass>
+   </RmDirectXEffect>
+   <RmColorVariable NAME="modelColor" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VALUE_0="0.359383" VALUE_1="0.451843" VALUE_2="1.000000" VALUE_3="1.000000"/>
+   <Rm2DTextureVariable NAME="Wood Floor" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\Wood.dds" ORIGIN="0"/>
+   <RmStreamMap NAME="PN Stream Mapping" API="">
+    <RmStream NAME="Normal3" API="" STRIDE="24">
+     <RmStreamChannel NAME="Position_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="0" USAGE_INDEX="0"/>
+     <RmStreamChannel NAME="Normal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="1" USAGE="3" USAGE_INDEX="0"/>
+    </RmStream>
+   </RmStreamMap>
+   <RmModelData NAME="Sphere" API="" FILE_NAME="..\..\Media\Models\Sphere.3ds" ORIENTATION="0"/>
+   <RmModelData NAME="ScreenAlignedQuad" API="" FILE_NAME="..\..\Media\Models\ScreenAlignedQuad.3ds" ORIENTATION="0"/>
+   <RmModelData NAME="Teapot" API="" FILE_NAME="..\..\Media\Models\Teapot.3ds" ORIENTATION="0"/>
+   <RmModelData NAME="Disc" API="" FILE_NAME="..\..\Media\Models\Disc.3ds" ORIENTATION="0"/>
+   <RmModelData NAME="Elephant" API="" FILE_NAME="..\..\Media\Models\ElephantBody.3ds" ORIENTATION="0"/>
+  </RmEffectGroup>
+  <RmEffectGroup NAME="Shadow Volume Effects" API="">
+   <RmDirectXEffect NAME="Shadow Volume _ Read NOTE before running" API="D3D" ACTIVE_CAMERA="">
+    <RmStringVariable NAME="ShadowVolume_ReadNOTEbeforerunningNotes" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC=""><RmTextDataBlock TYPE="TEXT"><![CDATA[
+Shadow volume computation effect. 
+
+IMPORTANT!
+
+In order for this effect to work correctly, the depth buffer must contain a stencil buffer 
+with stencil clear enabled and set to 0.0. Otherwise 
+the effect will look incorrect. 
+To modify stencil buffer clear value and depth buffer format, go to DirectX Preview 
+preferences tab in Edit / Preferences menu option.]]></RmTextDataBlock></RmStringVariable>
+    <RmFloatVariable NAME="ExtrudeDistance" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" VALUE="1000.000000" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
+    <RmMatrixVariable NAME="view_matrix" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="View" VALUE_0="-0.188820" VALUE_1="0.254722" VALUE_2="-0.948401" VALUE_3="0.000000" VALUE_4="0.564462" VALUE_5="0.818437" VALUE_6="0.107435" VALUE_7="-0.000152" VALUE_8="0.803572" VALUE_9="-0.515052" VALUE_10="-0.298319" VALUE_11="105.651596" VALUE_12="0.000000" VALUE_13="0.000000" VALUE_14="0.000000" VALUE_15="1.000000"/>
+    <RmMatrixVariable NAME="proj_matrix" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="Projection" VALUE_0="1.717196" VALUE_1="0.000000" VALUE_2="0.000000" VALUE_3="0.000000" VALUE_4="0.000000" VALUE_5="2.414213" VALUE_6="0.000000" VALUE_7="0.000000" VALUE_8="0.000000" VALUE_9="0.000000" VALUE_10="1.001001" VALUE_11="-1.001001" VALUE_12="0.000000" VALUE_13="0.000000" VALUE_14="1.000000" VALUE_15="0.000000"/>
+    <RmDynamicVariable NAME="LightDir" API="" ARTIST_EDITABLE="TRUE" VARIABLE_SEMANTIC="" VARIABLE_TYPE="FLOAT" ROWS="3" COLUMNS="1" FIXED_SIZE="TRUE" MIN="-1.000000" MAX="1.000000" CLAMP="TRUE" NORMALIZE="FALSE">
+     <RmDynamicVariableValueContainer>
+      <RmDynamicVariableValue ROW_INDEX="0" COLUMN_INDEX="0" VALUE="0.000000"/>
+      <RmDynamicVariableValue ROW_INDEX="1" COLUMN_INDEX="0" VALUE="-0.380000"/>
+      <RmDynamicVariableValue ROW_INDEX="2" COLUMN_INDEX="0" VALUE="0.140000"/>
+     </RmDynamicVariableValueContainer>
+    </RmDynamicVariable>
+    <RmMatrixVariable NAME="view_proj_matrix" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="ViewProjection" VALUE_0="-0.324242" VALUE_1="0.437407" VALUE_2="-1.628590" VALUE_3="0.000000" VALUE_4="1.362733" VALUE_5="1.975883" VALUE_6="0.259372" VALUE_7="-0.000368" VALUE_8="0.804376" VALUE_9="-0.515567" VALUE_10="-0.298617" VALUE_11="104.756355" VALUE_12="0.803572" VALUE_13="-0.515052" VALUE_14="-0.298319" VALUE_15="105.651596"/>
+    <Rm2DTextureVariable NAME="BumpMap" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\FieldstoneBumpDOT3.tga" ORIGIN="0"/>
+    <Rm2DTextureVariable NAME="Terrain" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\Terrain.tga" ORIGIN="0"/>
+    <Rm2DTextureVariable NAME="BaseMap" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="" FILE_NAME="..\..\Media\Textures\Fieldstone.tga" ORIGIN="0"/>
+    <RmStreamMap NAME="Model Stream" API="">
+     <RmStream NAME="Stream 0" API="" STRIDE="56">
+      <RmStreamChannel NAME="Position_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="0" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Normal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="3" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="TexCoord_0" API="" DATA_SIZE="8" DATA_TYPE="1" REGISTER="0" USAGE="5" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Tangent_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="6" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Binormal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="7" USAGE_INDEX="0"/>
+     </RmStream>
+    </RmStreamMap>
+    <RmStreamMap NAME="Terrain Stream" API="">
+     <RmStream NAME="Stream" API="" STRIDE="32">
+      <RmStreamChannel NAME="Position_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="0" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Normal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="3" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="TexCoord_0" API="" DATA_SIZE="8" DATA_TYPE="1" REGISTER="0" USAGE="5" USAGE_INDEX="0"/>
+     </RmStream>
+    </RmStreamMap>
+    <RmStreamMap NAME="Shadow Stream" API="">
+     <RmStream NAME="" API="" STRIDE="24">
+      <RmStreamChannel NAME="Position_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="0" USAGE_INDEX="0"/>
+      <RmStreamChannel NAME="Normal_0" API="" DATA_SIZE="12" DATA_TYPE="2" REGISTER="0" USAGE="3" USAGE_INDEX="0"/>
+     </RmStream>
+    </RmStreamMap>
+    <RmModelData NAME="Model_EdgeQuad" API="" FILE_NAME="..\..\Media\Models\Sphere_EdgeQuad.x" ORIENTATION="0"/>
+    <RmModelData NAME="Model" API="" FILE_NAME="" ORIENTATION="0">
+     <RmPlugInData NAME="SphereData" API="" PLUGIN_GUID="35ea14d9-fc6d-4bbd-9fe5-159accd679ab"><RmTextDataBlock TYPE="TEXT"><![CDATA[
+Generated sphere model with parameters: radius in X = 25.000000, radius in y = 25.000000, radius in z = 25.000000, 
+ horizontal segments = 32, vertical segments = 16]]></RmTextDataBlock></RmPlugInData>
+    </RmModelData>
+    <RmModelData NAME="Terrain" API="" FILE_NAME="..\..\Media\Models\Terrain.3ds" ORIENTATION="0"/>
+    <RmPass NAME="Object Depth Draw" API="D3D" PASS_INDEX="0" ENABLED="TRUE">
+     <RmModelReference NAME="Model" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D"/>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="ps_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+sampler2D BumpMapTex;
+sampler2D BaseMapTex;
+
+struct PS_INPUT 
+{
+   float2 TexCoord: TEXCOORD0;
+   float3 LightDir: TEXCOORD1;
+};
+
+struct PS_OUTPUT 
+{
+    float4 Color : COLOR;
+};
+
+PS_OUTPUT ps_main( PS_INPUT In )
+{
+   PS_OUTPUT Out;
+   
+   float4 color  = tex2D(BaseMapTex,In.TexCoord);
+   float3 normal = tex2D(BumpMapTex,In.TexCoord) * 2 - 1.0;
+        
+   normal = normalize(normal);
+   float3 lightDir = normalize(In.LightDir);
+   
+   float dotP = dot(normal,-lightDir);
+   dotP = max(dotP,0.4); // Don't make it too dark
+   
+   Out.Color = color * dotP;
+   
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="BaseMapTex" API="" REGISTER="1"/>
+      <RmSampler NAME="BumpMapTex" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float3 LightDir;
+float4x4 view_proj_matrix;
+
+struct VS_INPUT 
+{
+   float3 Pos:      POSITION;
+   float3 Normal:   NORMAL;
+   float2 TexCoord: TEXCOORD;
+   float3 Tangent:  TANGENT;
+   float3 Binormal: BINORMAL;
+};
+
+struct VS_OUTPUT 
+{
+   float4 Pos:      POSITION;
+   float2 TexCoord: TEXCOORD0;
+   float3 LightDir: TEXCOORD1;
+};
+
+VS_OUTPUT vs_main( VS_INPUT In )
+{
+   VS_OUTPUT Out;
+
+   Out.Pos = mul(view_proj_matrix, float4(In.Pos,1.0));
+   Out.TexCoord = In.TexCoord;
+   
+   float3x3 tanSpaceMat = float3x3(In.Tangent,
+                                   In.Binormal,
+                                   In.Normal);
+   Out.LightDir = mul(tanSpaceMat,LightDir);
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="LightDir" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="Model Stream" API=""/>
+     <RmTextureObject NAME="BaseMapTex" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="BaseMap" API=""/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+     <RmTextureObject NAME="BumpMapTex" API="D3D" STATE_INDEX="1">
+      <RmTextureReference NAME="BumpMap" API=""/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Object Shadow Back" API="D3D" PASS_INDEX="2" ENABLED="TRUE">
+     <RmModelReference NAME="Model_EdgeQuad" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="2" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILENABLE" API="D3D" STATE="52" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILPASS" API="D3D" STATE="55" VALUE="8" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILZFAIL" API="D3D" STATE="54" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="0" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 proj_matrix;
+float4x4 view_matrix;
+float3 LightDir;
+float ExtrudeDistance;
+
+struct VS_INPUT 
+{
+   float3 Pos:        POSITION;
+   float3 Normal:     NORMAL;
+};
+
+struct VS_OUTPUT 
+{
+   float4 Pos:     POSITION;
+   float4 Color:   COLOR;
+};
+
+VS_OUTPUT vs_main( VS_INPUT In )
+{
+   VS_OUTPUT Out;
+
+   float3 lightDirInView = mul(view_matrix,normalize(LightDir));
+   float3 normalInView   = mul(view_matrix,In.Normal);  
+   float3 posInView      = mul(view_matrix, float4(In.Pos,1.0));
+   
+   if (dot(normalInView,-lightDirInView)<0.0)
+   {
+      posInView += lightDirInView * ExtrudeDistance;
+   } // End if
+   
+   Out.Pos = mul(proj_matrix, float4(posInView,1.0));
+   //Out.Color = float4(0,0,1,0);
+   Out.Color = float4(In.Normal,0);
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="ExtrudeDistance" API="" REGISTER="9"/>
+      <RmShaderConstant NAME="LightDir" API="" REGISTER="8"/>
+      <RmShaderConstant NAME="proj_matrix" API="" REGISTER="0"/>
+      <RmShaderConstant NAME="view_matrix" API="" REGISTER="4"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="ps_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+struct PS_INPUT 
+{
+   float4 Color:   COLOR;
+};
+
+float4 ps_main( PS_INPUT In ) : COLOR0
+{
+   //  Output constant color:
+   float4 color = In.Color;
+   return color;
+}
+
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmStreamMapReference NAME="Shadow Stream" API=""/>
+    </RmPass>
+    <RmPass NAME="Object Shadow Front" API="D3D" PASS_INDEX="3" ENABLED="TRUE">
+     <RmModelReference NAME="Model_EdgeQuad" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILENABLE" API="D3D" STATE="52" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILFUNC" API="D3D" STATE="56" VALUE="8" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILPASS" API="D3D" STATE="55" VALUE="7" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILZFAIL" API="D3D" STATE="54" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="0" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 proj_matrix;
+float4x4 view_matrix;
+float3 LightDir;
+float ExtrudeDistance;
+
+struct VS_INPUT 
+{
+   float3 Pos:        POSITION;
+   float3 Normal:     NORMAL;
+};
+
+struct VS_OUTPUT 
+{
+   float4 Pos:     POSITION;
+   float4 Color:   COLOR;
+};
+
+VS_OUTPUT vs_main( VS_INPUT In )
+{
+   VS_OUTPUT Out;
+
+   float3 lightDirInView = mul(view_matrix,normalize(LightDir));
+   float3 normalInView   = mul(view_matrix,In.Normal);  
+   float3 posInView      = mul(view_matrix, float4(In.Pos,1.0));
+   
+   if (dot(normalInView,-lightDirInView)<0.0)
+   {
+      posInView += lightDirInView * ExtrudeDistance;
+   } // End if
+   
+   Out.Pos = mul(proj_matrix, float4(posInView,1.0));
+   //Out.Color = float4(0,0,1,0);
+   Out.Color = float4(In.Normal,0);
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="ExtrudeDistance" API="" REGISTER="9"/>
+      <RmShaderConstant NAME="LightDir" API="" REGISTER="8"/>
+      <RmShaderConstant NAME="proj_matrix" API="" REGISTER="0"/>
+      <RmShaderConstant NAME="view_matrix" API="" REGISTER="4"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="ps_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+struct PS_INPUT 
+{
+   float4 Color:   COLOR;
+};
+
+float4 ps_main( PS_INPUT In ) : COLOR0
+{
+   //  Output constant color:
+   float4 color = In.Color;
+   return color;
+}
+
+
+
+]]></RmShaderCode></RmHLSLShader>
+     <RmStreamMapReference NAME="Shadow Stream" API=""/>
+    </RmPass>
+    <RmPass NAME="Terrain Depth Draw" API="D3D" PASS_INDEX="1" ENABLED="TRUE">
+     <RmModelReference NAME="Terrain" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D"/>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="ps_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+sampler2D TerrainTexture;
+
+struct PS_INPUT 
+{
+   float4 Pos:        POSITION;
+   float2 TexCoord:   TEXCOORD0;
+   float  Brightness: TEXCOORD1;
+};
+
+float4 ps_main( PS_INPUT In ) : COLOR0
+{
+   //  Output constant color:
+   float4 color = tex2D(TerrainTexture,In.TexCoord) *
+                    In.Brightness;
+   return color;
+}
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="TerrainTexture" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float3 LightDir;
+float4x4 view_proj_matrix;
+
+struct VS_INPUT 
+{
+   float3 Pos:      POSITION;
+   float3 Normal:   NORMAL;
+   float2 TexCoord: TEXCOORD0;
+};
+
+struct VS_OUTPUT 
+{
+   float4 Pos:        POSITION;
+   float2 TexCoord:   TEXCOORD0;
+   float  Brightness: TEXCOORD1;
+};
+
+VS_OUTPUT vs_main( VS_INPUT In )
+{
+   VS_OUTPUT Out;
+
+   Out.Pos = mul(view_proj_matrix, float4(In.Pos,1.0));
+   Out.TexCoord = In.TexCoord;
+   
+   float Brightness = dot(-normalize(LightDir),In.Normal);
+   Brightness = max(Brightness,0.5); // Don't make it too dark
+   
+   Out.Brightness = Brightness;
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="LightDir" API="" REGISTER="4"/>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="Terrain Stream" API=""/>
+     <RmTextureObject NAME="TerrainTexture" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="Terrain" API=""/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+    <RmPass NAME="Terrain with Shadow" API="D3D" PASS_INDEX="4" ENABLED="TRUE">
+     <RmModelReference NAME="Terrain" API=""/>
+     <RmRenderStateBlock NAME="Render State" API="D3D">
+      <RmState NAME="D3DRS_STENCILREF" API="D3D" STATE="57" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILFUNC" API="D3D" STATE="56" VALUE="2" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILENABLE" API="D3D" STATE="52" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILPASS" API="D3D" STATE="55" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_STENCILZFAIL" API="D3D" STATE="54" VALUE="1" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ZFUNC" API="D3D" STATE="23" VALUE="4" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_COLORWRITEENABLE" API="D3D" STATE="168" VALUE="15" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_CULLMODE" API="D3D" STATE="22" VALUE="3" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ZWRITEENABLE" API="D3D" STATE="14" VALUE="0" USAGE="RENDER_STATE"/>
+      <RmState NAME="D3DRS_ZENABLE" API="D3D" STATE="7" VALUE="1" USAGE="RENDER_STATE"/>
+     </RmRenderStateBlock>
+     <RmHLSLShader NAME="Pixel Shader" API="D3D" PIXEL_SHADER="TRUE" TARGET="ps_2_0" ENTRY_POINT="ps_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+sampler2D TerrainTexture;
+
+struct PS_INPUT 
+{
+   float4 Pos:      POSITION;
+   float2 TexCoord: TEXCOORD;
+};
+
+float4 ps_main( PS_INPUT In ) : COLOR0
+{
+   //  Darken the color:
+   float4 color = tex2D(TerrainTexture,In.TexCoord);
+   color *= 0.2;
+   return color;
+}
+
+
+
+]]></RmShaderCode>
+      <RmSampler NAME="TerrainTexture" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmHLSLShader NAME="Vertex Shader" API="D3D" PIXEL_SHADER="FALSE" TARGET="vs_2_0" ENTRY_POINT="vs_main"><RmShaderCode TYPE="TEXT"><![CDATA[
+float4x4 view_proj_matrix;
+
+struct VS_INPUT 
+{
+   float3 Pos:      POSITION;
+   float2 TexCoord: TEXCOORD;
+};
+
+struct VS_OUTPUT 
+{
+   float4 Pos:      POSITION;
+   float2 TexCoord: TEXCOORD;
+};
+
+VS_OUTPUT vs_main( VS_INPUT In )
+{
+   VS_OUTPUT Out;
+
+   Out.Pos = mul(view_proj_matrix, float4(In.Pos,1.0));
+   Out.TexCoord = In.TexCoord;
+
+   return Out;
+}
+
+
+
+]]></RmShaderCode>
+      <RmShaderConstant NAME="view_proj_matrix" API="" REGISTER="0"/>
+     </RmHLSLShader>
+     <RmStreamMapReference NAME="Terrain Stream" API=""/>
+     <RmTextureObject NAME="TerrainTexture" API="D3D" STATE_INDEX="0">
+      <RmTextureReference NAME="Terrain" API=""/>
+      <RmState NAME="D3DSAMP_MAGFILTER" API="D3D" STATE="5" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MINFILTER" API="D3D" STATE="6" VALUE="2" USAGE="SAMPLER_STATE"/>
+      <RmState NAME="D3DSAMP_MIPFILTER" API="D3D" STATE="7" VALUE="2" USAGE="SAMPLER_STATE"/>
+     </RmTextureObject>
+    </RmPass>
+   </RmDirectXEffect>
+  </RmEffectGroup>
+  <RmVectorVariable NAME="view_position" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="ViewPosition" VALUE_0="-425.272064" VALUE_1="-251.844971" VALUE_2="151.578003" VALUE_3="1.000000" MIN="-10.000000" MAX="10.000000" CLAMP="FALSE" NORMALIZE="FALSE"/>
+  <RmMatrixVariable NAME="view_proj_matrix" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="ViewProjection" VALUE_0="-1.111082" VALUE_1="1.929696" VALUE_2="0.089469" VALUE_3="-0.089499" VALUE_4="0.665068" VALUE_5="0.276096" VALUE_6="2.304318" VALUE_7="3.084002" VALUE_8="0.823501" VALUE_9="0.487675" VALUE_10="-0.291581" VALUE_11="516.227295" VALUE_12="0.823089" VALUE_13="0.487431" VALUE_14="-0.291435" VALUE_15="516.969177"/>
+  <RmMatrixVariable NAME="proj_matrix" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="Projection" VALUE_0="1.717196" VALUE_1="0.000000" VALUE_2="0.000000" VALUE_3="0.000000" VALUE_4="0.000000" VALUE_5="2.414213" VALUE_6="0.000000" VALUE_7="0.000000" VALUE_8="0.000000" VALUE_9="0.000000" VALUE_10="1.001001" VALUE_11="-1.001001" VALUE_12="0.000000" VALUE_13="0.000000" VALUE_14="1.000000" VALUE_15="0.000000"/>
+  <RmFloatVariable NAME="time_0_X" API="" ARTIST_EDITABLE="FALSE" VARIABLE_SEMANTIC="Time0_X" VALUE="18.637764" MIN="-1.000000" MAX="1.000000" CLAMP="FALSE"/>
+ </RmEffectWorkspace>
+</RENDER_MONKEY>
