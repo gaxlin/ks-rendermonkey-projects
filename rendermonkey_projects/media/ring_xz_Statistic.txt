@@ -1,0 +1,16 @@
+Mesh filename: J:\ks-rendermonkey-projects\ks-rendermonkey-projects\rendermonkey_projects\media\ring_xz.x
+NumVertices: 128
+NumFaces: 64
+FVF: $00000112
+Options: $00000110
+NumBytesPerVertex: 32
+
+ mesh size: 2,24
+
+BoundBox min: x=-1,012; y=-0,492; z=-0,9852
+BoundBox max: x=0,9875; y=0,508; z=1,015
+
+Bound sphere center : x=-0,0125; y=0,008039; z=0,01479
+Bound sphere radius : 1,12
+
+ NumSubsets: 1
